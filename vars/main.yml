@@ -1,0 +1,15 @@
+_ksm_service:
+  state: "{{ ksm_services_state }}"
+  name: ksm
+  enabled: "{{ ksm_services_enabled }}"
+
+_ksmtuned_service:
+  state: "{{ ksm_services_state }}"
+  name: ksmtuned
+  enabled: "{{ ksm_services_enabled }}"
+
+_ksm_packages:
+  - name:
+      - ksm
+    update_cache: yes
+    state: latest

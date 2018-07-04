@@ -1,0 +1,24 @@
+---
+- name: "Ensure state of _ksm_packages"
+  become: true
+  yum:
+    name: "{{ _ksm_package.name | default(_ksm_package) }}"
+    state: "{{ _ksm_package.state | default(omit) }}"
+    update_cache: "{{ _ksm_package.update_cache | default(omit) }}"
+  loop: "{{ _ksm_packages }}"
+  loop_control:
+    loop_var: _ksm_package
+
+- name: "Ensure state of _ksm_service"
+  become: true
+  service:
+    name: "{{ _ksm_service.name }}"
+    state: "{{ _ksm_service.state }}"
+    enabled: "{{ _ksm_service.enabled }}"
+
+- name: "Ensure state of _ksmtuned_service"
+  become: true
+  service:
+    name: "{{ _ksmtuned_service.name }}"
+    state: "{{ _ksmtuned_service.state }}"
+    enabled: "{{ _ksmtuned_service.enabled }}"
