@@ -7,8 +7,8 @@
     description: "{{ _ansible_repo.description | default(omit) }}"
     gpgcheck: "{{ _ansible_repo.gpgcheck | default(omit) }}"
     enabled: "{{ _ansible_repo.enabled | default(omit) }}"
-    repo_gpgcheck: "{{ ansible_repo.repo_gpgcheck | default(omit) }}"
-    gpgkey: "{{ ansible_repo.gpgkey | default(omit) }}"
+    repo_gpgcheck: "{{ _ansible_repo.repo_gpgcheck | default(omit) }}"
+    gpgkey: "{{ _ansible_repo.gpgkey | default(omit) }}"
   loop: "{{ _ansible_repos }}"
   loop_control:
     loop_var: _ansible_repo
