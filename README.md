@@ -11,9 +11,10 @@ Variables are defined in `defaults/main.yml` as well as `vars/`. Based on the op
 | Name              | Default Value       | Description          |
 |-------------------|---------------------|----------------------|
 | `autorun` | `False`  | Boolean to define if the role "autorun". Useful when you want to have dependencies solved by galaxy (`meta/main.yml`) but don't want it to run automatically.  |
-| `ansible_version` | `2.6`  | The Ansible version to install. |
+| `ansible_version` | `latest`  | The Ansible version to install. |
 | `ansible_release` | `yes`  | Boolean to enable `release` repo. |
 | `ansible_preview` | `no`  | Boolean to enable `preview` repo. |
+| `ansible_nightly` | `no`  | Boolean to enable `nightly` repo. |
 
 Examples
 ------------

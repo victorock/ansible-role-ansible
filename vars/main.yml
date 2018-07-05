@@ -13,6 +13,13 @@ _ansible_repos:
     enabled: "{{ ansible_preview }}"
     repo_gpgcheck: no
 
+  - name: ansible_nightly
+    description: "CentOS/RHEL {{ ansible_distribution_major_version }} / {{ ansible_architecture }} - Ansible Nightly"
+    baseurl: "http://releases.ansible.com/ansible/rpm/nightly/devel/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
+    gpgcheck: no
+    enabled: "{{ ansible_nightly }}"
+    repo_gpgcheck: no
+
 _ansible_packages:
   - name: ansible
     update_cache: yes
