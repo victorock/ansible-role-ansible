@@ -1,2 +1,3 @@
-ksm_services_state: "started"
-ksm_services_enabled: "yes"
+ansible_version: "2.6"
+ansible_release: "yes"
+ansible_preview: "no"

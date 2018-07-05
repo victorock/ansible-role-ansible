@@ -1,15 +1,25 @@
-_ksm_service:
-  state: "{{ ksm_services_state }}"
-  name: ksm
-  enabled: "{{ ksm_services_enabled }}"
+_ansible_repos:
+  - name: ansible_release
+    description: "CentOS/RHEL {{ ansible_distribution_major_version }} / {{ ansible_architecture }} - Ansible Release"
+    baseurl: "http://releases.ansible.com/ansible/rpm/release/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
+    gpgcheck: no
+    enabled: "{{ ansible_release }}"
+    repo_gpgcheck: no
 
-_ksmtuned_service:
-  state: "{{ ksm_services_state }}"
-  name: ksmtuned
-  enabled: "{{ ksm_services_enabled }}"
+  - name: ansible_preview
+    description: "CentOS/RHEL {{ ansible_distribution_major_version }} / {{ ansible_architecture }} - Ansible Preview"
+    baseurl: "http://releases.ansible.com/ansible/rpm/preview/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
+    gpgcheck: no
+    enabled: "{{ ansible_preview }}"
+    repo_gpgcheck: no
 
-_ksm_packages:
-  - name:
-      - ksm
+_ansible_packages:
+  - name: ansible
     update_cache: yes
-    state: latest
+    state: "{{ ansible_version }}"
+
+  - name:
+      - python-ncclient
+      - libselinux-python
+    update_cache: yes
+    state: "present"

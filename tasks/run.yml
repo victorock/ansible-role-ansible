@@ -1,24 +1,28 @@
 ---
-- name: "Ensure state of _ksm_packages"
+- name: "Ensure state of _ansible_repos"
+  become: true
+  yum_repository:
+    name: "{{ _ansible_repo.name | default (omit)}}"
+    baseurl: "{{ _ansible_repo.baseurl | default(_ansible_repo) }}"
+    description: "{{ _ansible_repo.description | default(omit) }}"
+    gpgcheck: "{{ _ansible_repo.gpgcheck | default(omit) }}"
+    enabled: "{{ _ansible_repo.enabled | default(omit) }}"
+    repo_gpgcheck: "{{ ansible_repo.repo_gpgcheck | default(omit) }}"
+    gpgkey: "{{ ansible_repo.gpgkey | default(omit) }}"
+  loop: "{{ _ansible_repos }}"
+  loop_control:
+    loop_var: _ansible_repo
+  tags:
+    - configure
+
+- name: "Ensure state of _ansible_packages"
   become: true
   yum:
-    name: "{{ _ksm_package.name | default(_ksm_package) }}"
-    state: "{{ _ksm_package.state | default(omit) }}"
-    update_cache: "{{ _ksm_package.update_cache | default(omit) }}"
-  loop: "{{ _ksm_packages }}"
+    name: "{{ _ansible_package.name | default(_ansible_package) }}"
+    state: "{{ _ansible_package.state  | default(omit) }}"
+    update_cache: "{{ _ansible_package.update_cache | default(omit) }}"
+  loop: "{{ _ansible_packages }}"
   loop_control:
-    loop_var: _ksm_package
-
-- name: "Ensure state of _ksm_service"
-  become: true
-  service:
-    name: "{{ _ksm_service.name }}"
-    state: "{{ _ksm_service.state }}"
-    enabled: "{{ _ksm_service.enabled }}"
-
-- name: "Ensure state of _ksmtuned_service"
-  become: true
-  service:
-    name: "{{ _ksmtuned_service.name }}"
-    state: "{{ _ksmtuned_service.state }}"
-    enabled: "{{ _ksmtuned_service.enabled }}"
+    loop_var: _ansible_package
+  tags:
+    - install

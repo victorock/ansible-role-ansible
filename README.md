@@ -1,7 +1,7 @@
-Ansible Role to Install KSM
+Ansible Role to Install Ansible
 =========
 
-Ansible role to install Kernel Same-Page Merging.
+Ansible role to install Ansible by Red Hat.
 
 Role Variables
 --------------
@@ -11,26 +11,26 @@ Variables are defined in `defaults/main.yml` as well as `vars/`. Based on the op
 | Name              | Default Value       | Description          |
 |-------------------|---------------------|----------------------|
 | `autorun` | `False`  | Boolean to define if the role "autorun". Useful when you want to have dependencies solved by galaxy (`meta/main.yml`) but don't want it to run automatically.  |
-| `ksm_services_state` | `started`  | The services state: running, stopped or restarted |
-| `ksm_services_enabled` | `yes` | Bool to define if services shall start on-boot. |
-
+| `ansible_version` | `2.6`  | The Ansible version to install. |
+| `ansible_release` | `yes`  | Boolean to enable `release` repo. |
+| `ansible_preview` | `no`  | Boolean to enable `preview` repo. |
 
 Examples
 ------------
 
 Follow below different examples and ways to use this role.
 
->Playbook: Install KSM
+>Playbook: Install Ansible
 
 ```YAML
 ---
-- name: "ksm: Install KSM"
-  hosts: libvirt
+- name: "ansible: Install Ansible"
+  hosts: hosts
   gather_facts: false
   become: true
 
   roles:
-    - role: victorock.ksm
+    - role: victorock.ansible
       autorun: true
 
 ```
@@ -43,13 +43,7 @@ None
 Requirements
 ------------
 
-Server configured with repository containing ksm package.
-
-Example role to install epel:
-- geerlingguy.repo-epel
-
-Example role using RHSM:
-- victorock.linux
+None
 
 License
 ------------
