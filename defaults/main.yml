@@ -1,0 +1,4 @@
+ansible_version: "latest"
+ansible_release: "yes"
+ansible_preview: "no"
+ansible_nightly: "no"

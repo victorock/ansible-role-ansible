@@ -1,0 +1,28 @@
+---
+- name: "Ensure state of _ansible_repos"
+  become: true
+  yum_repository:
+    name: "{{ _ansible_repo.name | default (omit)}}"
+    baseurl: "{{ _ansible_repo.baseurl | default(_ansible_repo) }}"
+    description: "{{ _ansible_repo.description | default(omit) }}"
+    gpgcheck: "{{ _ansible_repo.gpgcheck | default(omit) }}"
+    enabled: "{{ _ansible_repo.enabled | default(omit) }}"
+    repo_gpgcheck: "{{ _ansible_repo.repo_gpgcheck | default(omit) }}"
+    gpgkey: "{{ _ansible_repo.gpgkey | default(omit) }}"
+  loop: "{{ _ansible_repos }}"
+  loop_control:
+    loop_var: _ansible_repo
+  tags:
+    - configure
+
+- name: "Ensure state of _ansible_packages"
+  become: true
+  yum:
+    name: "{{ _ansible_package.name | default(_ansible_package) }}"
+    state: "{{ _ansible_package.state  | default(omit) }}"
+    update_cache: "{{ _ansible_package.update_cache | default(omit) }}"
+  loop: "{{ _ansible_packages }}"
+  loop_control:
+    loop_var: _ansible_package
+  tags:
+    - install
