@@ -1,4 +1,4 @@
-ansible_version: "latest"
-ansible_release: "yes"
-ansible_preview: "no"
-ansible_nightly: "no"
+ansible_state: "latest"
+ansible_release_repo: "yes"
+ansible_preview_repo: "no"
+ansible_nightly_repo: "no"
