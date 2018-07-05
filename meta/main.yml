@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-  ansible_role: ansible
+  role_name: ansible
   author: Victor da Costa (@victorock)
   description: "Ansible role to install ansible."
   company: victorock
