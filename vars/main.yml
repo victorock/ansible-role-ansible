@@ -3,27 +3,27 @@ _ansible_repos:
     description: "CentOS/RHEL {{ ansible_distribution_major_version }} / {{ ansible_architecture }} - Ansible Release"
     baseurl: "http://releases.ansible.com/ansible/rpm/release/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
     gpgcheck: no
-    enabled: "{{ ansible_release }}"
+    enabled: "{{ ansible_release_repo }}"
     repo_gpgcheck: no
 
   - name: ansible_preview
     description: "CentOS/RHEL {{ ansible_distribution_major_version }} / {{ ansible_architecture }} - Ansible Preview"
     baseurl: "http://releases.ansible.com/ansible/rpm/preview/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
     gpgcheck: no
-    enabled: "{{ ansible_preview }}"
+    enabled: "{{ ansible_preview_repo }}"
     repo_gpgcheck: no
 
   - name: ansible_nightly
     description: "CentOS/RHEL {{ ansible_distribution_major_version }} / {{ ansible_architecture }} - Ansible Nightly"
     baseurl: "http://releases.ansible.com/ansible/rpm/nightly/devel/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
     gpgcheck: no
-    enabled: "{{ ansible_nightly }}"
+    enabled: "{{ ansible_nightly_repo }}"
     repo_gpgcheck: no
 
 _ansible_packages:
   - name: ansible
     update_cache: yes
-    state: "{{ ansible_version }}"
+    state: "{{ ansible_state }}"
 
   - name:
       - python-ncclient
